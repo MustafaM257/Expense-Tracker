@@ -1,5 +1,7 @@
 <template>
-  <dl class="grid grid-cols-1 gap-px mx-auto bg-gray-900/5 sm:grid-cols-2">
+  <dl
+    class="grid w-full max-w-3xl grid-cols-1 gap-px mx-auto bg-gray-900/5 sm:grid-cols-2"
+  >
     <div
       v-for="stat in stats"
       :key="stat.name"
