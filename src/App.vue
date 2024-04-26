@@ -1,8 +1,9 @@
 <template>
+  <Header />
+
   <main
-    class="flex flex-col items-center justify-center w-full h-screen max-w-6xl mx-auto bg-gray-300"
+    class="flex flex-col items-center justify-start w-full h-screen max-w-6xl gap-6 py-10 mx-auto text-center bg-gray-300"
   >
-    <Header />
     <Balance />
     <Expenses />
   </main>
