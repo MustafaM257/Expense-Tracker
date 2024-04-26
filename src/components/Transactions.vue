@@ -4,21 +4,35 @@
       History
     </h3>
     <li
-      v-for="item in items"
+      v-for="item in transactions"
       :key="item.id"
-      class="px-4 py-4 overflow-hidden bg-white border-2 shadow sm:px-6"
-      :class="{ 'border-rose-600': item.id === 1 }"
+      class="relative flex justify-between px-4 py-4 overflow-hidden bg-white border-2 border-r-8 shadow lg:px-8 sm:px-6"
+      :class="{
+        'border-r-rose-600': item.amount < 0,
+        'border-r-green-500': item.amount > 0,
+      }"
     >
-      <!-- Your content -->
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis
-      tenetur
+      <span class="text-lg font-semibold leading-6 text-gray-900">{{
+        item.text
+      }}</span>
+      <span class="text-lg font-semibold leading-6 text-gray-900">{{
+        item.amount < 0 ? " " + item.amount : " +" + item.amount
+      }}</span>
+
+      <button class="absolute left-0 w-6 h-6 text-neutral-900 bg-rose-600">
+        x
+      </button>
     </li>
   </ul>
 </template>
 
-<script setup>
-const items = [
-  { id: 1 },
-  // More items...
-];
+<script setup lang="ts">
+import type { Transaction } from "../types/index";
+
+const props = defineProps({
+  transactions: {
+    type: Array as () => Transaction[],
+    required: true,
+  },
+});
 </script>
