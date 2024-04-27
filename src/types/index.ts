@@ -4,9 +4,3 @@ export type Transaction = {
   amount: number;
 };
 
-export type Stat = {
-  name: string;
-  value: number;
-  change: number;
-  changeType: "positive" | "negative";
-};
