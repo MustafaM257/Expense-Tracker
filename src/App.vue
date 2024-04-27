@@ -50,6 +50,6 @@ const handleAddTransaction = (transaction: Transaction) => {
 };
 const handleDeleteTransaction = (id: number) => {
   transactions.value = transactions.value.filter((item) => item.id !== id);
-  toast.warning("Transaction deleted successfully!");
+  toast.success("Transaction deleted successfully!");
 };
 </script>
