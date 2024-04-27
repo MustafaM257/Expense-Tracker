@@ -56,7 +56,12 @@ const handleSubmit = () => {
     toast.error("Please add a text and amount");
     return;
   }
-
+  const newTransaction = {
+    id: Math.floor(Math.random() * 100000000),
+    text: text.value,
+    amount: +amount.value,
+  };
+  emit("addTransaction", newTransaction);
   text.value = "";
   amount.value = "";
 };

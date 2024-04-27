@@ -19,7 +19,10 @@
         item.amount < 0 ? " " + item.amount : " +" + item.amount
       }}</span>
 
-      <button class="absolute left-0 w-6 h-6 text-neutral-900 bg-rose-600">
+      <button
+        class="absolute left-0 w-6 h-6 text-neutral-900 bg-rose-600"
+        @click="handleDelete(item.id)"
+      >
         x
       </button>
     </li>
@@ -35,4 +38,8 @@ const props = defineProps({
     required: true,
   },
 });
+const emit = defineEmits(["deleteTransaction"]);
+const handleDelete = (id: number) => {
+  emit("deleteTransaction", id);
+};
 </script>

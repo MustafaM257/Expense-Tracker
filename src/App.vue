@@ -5,8 +5,11 @@
   >
     <Balance :balance="balance" />
     <IncomeOutcome :income="income" :outcome="outcome" />
-    <Transactions :transactions="transactions" />
-    <TransactionsForm />
+    <Transactions
+      :transactions="transactions"
+      @delete-transaction="handleDeleteTransaction"
+    />
+    <TransactionsForm @add-transaction="handleAddTransaction" />
   </main>
 </template>
 <script setup lang="ts">
@@ -18,12 +21,10 @@ import TransactionsForm from "./components/TransactionsForm.vue";
 import type { Transaction } from "./types/index";
 import { ref } from "vue";
 import { computed } from "vue";
-const transactions = ref<Transaction[]>([
-  { id: 1, text: "Flower", amount: -20 },
-  { id: 2, text: "Salary", amount: 300 },
-  { id: 3, text: "Book", amount: -10 },
-  { id: 4, text: "Camera", amount: 150 },
-]);
+import { useToast } from "vue-toastification";
+const toast = useToast();
+
+const transactions = ref<Transaction[]>([]);
 
 const balance = computed(() => {
   return transactions.value.reduce((acc, item) => acc + item.amount, 0);
@@ -43,4 +44,12 @@ const outcome = computed(() => {
     .reduce((acc, item) => acc + item.amount, 0)
     .toFixed(2);
 });
+const handleAddTransaction = (transaction: Transaction) => {
+  transactions.value.push(transaction);
+  toast.success("Transaction created successfully!");
+};
+const handleDeleteTransaction = (id: number) => {
+  transactions.value = transactions.value.filter((item) => item.id !== id);
+  toast.warning("Transaction deleted successfully!");
+};
 </script>
