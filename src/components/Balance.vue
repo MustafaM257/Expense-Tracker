@@ -6,9 +6,17 @@
           Balance
         </dt>
         <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
-          911$
+          {{ balance }}
         </dd>
       </div>
     </dl>
   </div>
 </template>
+<script setup lang="ts">
+const props = defineProps({
+  balance: {
+    type: Number,
+    required: true,
+  },
+});
+</script>

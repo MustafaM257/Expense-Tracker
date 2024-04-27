@@ -3,7 +3,7 @@
   <main
     class="flex flex-col items-center justify-start w-full h-auto max-w-6xl gap-6 py-10 mx-auto text-center bg-gray-500"
   >
-    <Balance :total="total" />
+    <Balance :balance="balance" />
     <Expenses />
     <Transactions :transactions="transactions" />
     <TransactionsForm />
@@ -25,7 +25,7 @@ const transactions = ref<Transaction[]>([
   { id: 4, text: "Camera", amount: 150 },
 ]);
 
-const total = computed(() => {
+const balance = computed(() => {
   return transactions.value.reduce((acc, item) => acc + item.amount, 0);
 });
 </script>
