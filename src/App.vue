@@ -19,8 +19,7 @@ import IncomeOutcome from "./components/IncomeOutcome.vue";
 import Transactions from "./components/Transactions.vue";
 import TransactionsForm from "./components/TransactionsForm.vue";
 import type { Transaction } from "./types/index";
-import { ref } from "vue";
-import { computed } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 import { useToast } from "vue-toastification";
 const toast = useToast();
 
@@ -28,6 +27,13 @@ const transactions = ref<Transaction[]>([]);
 
 const balance = computed(() => {
   return transactions.value.reduce((acc, item) => acc + item.amount, 0);
+});
+
+onMounted(() => {
+  const localTransactions = localStorage.getItem("transactions");
+  if (localTransactions) {
+    transactions.value = JSON.parse(localTransactions);
+  }
 });
 
 // Income & Epenses
@@ -47,9 +53,15 @@ const outcome = computed(() => {
 const handleAddTransaction = (transaction: Transaction) => {
   transactions.value.push(transaction);
   toast.success("Transaction created successfully!");
+  saveTransactions();
 };
 const handleDeleteTransaction = (id: number) => {
   transactions.value = transactions.value.filter((item) => item.id !== id);
   toast.success("Transaction deleted successfully!");
+  saveTransactions();
+};
+
+const saveTransactions = () => {
+  localStorage.setItem("transactions", JSON.stringify(transactions.value));
 };
 </script>
