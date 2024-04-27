@@ -6,7 +6,7 @@
     <li
       v-for="item in transactions"
       :key="item.id"
-      class="relative flex justify-between px-4 py-4 overflow-hidden bg-white border-2 border-r-8 shadow lg:px-8 sm:px-6"
+      class="relative flex items-center justify-between px-4 py-4 overflow-hidden bg-white border-2 border-r-8 shadow lg:px-8 sm:px-6"
       :class="{
         'border-r-rose-600': item.amount < 0,
         'border-r-green-500': item.amount > 0,
@@ -20,10 +20,10 @@
       }}</span>
 
       <button
-        class="absolute left-0 w-6 h-6 text-neutral-900 bg-rose-600"
+        class="p-2.5 flex items-center justify-center text-rose-100 bg-red-500"
         @click="handleDelete(item.id)"
       >
-        x
+        Delete
       </button>
     </li>
   </ul>
