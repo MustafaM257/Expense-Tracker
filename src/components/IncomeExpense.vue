@@ -42,4 +42,14 @@ const stats = [
     changeType: "negative",
   },
 ];
+const props = defineProps({
+  income: {
+    type: String,
+    required: true,
+  },
+  expenses: {
+    type: String,
+    required: true,
+  },
+});
 </script>
